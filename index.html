@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CoFarm – Android </title>
+  <meta name="description" content="Konsep aplikasi Android untuk kemitraan pertanian (contract farming), end-to-end dari pendaftaran petani, kontrak, budidaya, serap hasil, sampai pelaporan." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root{
+      --brand:#0ea5a0; /* hijau kebiruan lembut */
+      --brand-dark:#0a817d;
+      --ink:#0b2e2d;
+      --muted:#5a6b6a;
+      --bg:#f6fffd;
+    }
+    body{font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg)}
+    .navbar{backdrop-filter: saturate(120%) blur(8px);}    
+    .navbar-brand{font-weight:700; letter-spacing:.3px}
+    .btn-brand{background:var(--brand); color:#fff; border:none}
+    .btn-brand:hover{background:var(--brand-dark); color:#fff}
+    .hero{
+      background: radial-gradient(1200px 600px at 80% -10%, #c9fffa 0, rgba(255,255,255,.0) 60%),
+                  radial-gradient(900px 500px at -10% 120%, #e7fff8 0, rgba(255,255,255,.0) 70%);
+      padding-top: 7rem; padding-bottom: 4rem;
+    }
+    .chip{border-radius: 999px; background:#e8fffb; color:var(--brand-dark); font-weight:600; padding:.4rem .8rem; display:inline-flex; align-items:center; gap:.4rem}
+    .icon-pill{width:40px; height:40px; display:grid; place-items:center; border-radius:12px; background:#e8fffb; color:var(--brand-dark)}
+    .feature-card{border:1px solid #e6f3f1; border-radius:1.2rem; padding:1.25rem; background:#fff; height:100%;}
+    .feature-card h5{font-weight:700}
+    .section-title h2{font-weight:800}
+    .timeline{position:relative; margin-left:1rem; padding-left:1.5rem}
+    .timeline:before{content:""; position:absolute; left:0.5rem; top:.2rem; bottom:.2rem; width:2px; background:#cfeeea}
+    .timeline .step{position:relative; margin-bottom:1.2rem}
+    .timeline .step:before{content:""; position:absolute; left:-0.2rem; top:.25rem; width:10px; height:10px; border-radius:50%; background:var(--brand)}
+    .matrix th, .matrix td{vertical-align: middle}
+    .bg-accent{background:#f1fffb}
+    .card-soft{border:1px solid #e6f3f1; border-radius:1rem}
+    footer a{color:#dff9f5}
+    .badge-soft{background:#e8fffb; color:var(--brand-dark); border:1px solid #cfeeea}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+         <img src="assets/img/logo_watermark.png" alt="Logo" style="width: 34px; height: 34px; object-fit: contain;">
+		</i></span>
+        <span>CoFarm - Android</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#home">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#fitur">Fitur</a></li>
+          <li class="nav-item"><a class="nav-link" href="#alur">Alur Kontrak</a></li>
+          <li class="nav-item"><a class="nav-link" href="#logistik">Logistik Manual</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kasus">Simulasi</a></li>
+          <li class="nav-item"><a class="nav-link" href="#layar">Tampilan Aplikasi</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <div class="chip mb-3"><i class="bi bi-shield-check"></i> Kemitraan Pertanian yang Transparan</div>
+          <h1 class="display-5 fw-bold">Aplikasi Android untuk <span style="color:var(--brand-dark)">Contract Farming</span>  <em></em></h1>
+          <p class="lead text-muted">Dari pendaftaran petani, perjanjian kontrak, monitoring budidaya, panen & serap hasil, hingga serah terima ke offtaker dan pelaporan – semuanya dalam satu aplikasi yang ringkas.</p>
+          <div class="d-flex gap-2 mt-3">
+            <a class="btn btn-brand btn-lg" href="#layar"><i class="bi bi-phone"></i> Lihat Tampilan</a>
+            <a class="btn btn-outline-secondary btn-lg" href="#fitur"><i class="bi bi-grid"></i> Jelajahi Fitur</a>
+          </div>
+          <p class="mt-3 small text-muted">Dikonsep & disusun oleh <strong>Afif Fadhilah Iftiar, S.T. dan Salwa Dian Lestari, S.T.</strong></p>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft p-3">
+            <img alt="Ilustrasi aplikasi ContractFarmingApp" class="w-100 rounded" src="assets/img/hero-img.jpg" />
+            <div class="p-3">
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="badge text-bg-success">Android</span>
+                <span class="badge text-bg-light text-success border">Offline-first</span>
+                <span class="badge text-bg-light text-success border">Logistik Manual</span>
+                <span class="badge text-bg-light text-success border">Audit Trail</span>
+                <span class="badge badge-soft">Geofencing</span>
+                <span class="badge badge-soft">Gotong Royong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FITUR -->
+  <section id="fitur" class="py-5">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Fitur Utama</h2>
+      <p class="text-muted">Dirancang untuk petani, pendamping lapangan, koperasi/aggregator, dan offtaker.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-3 mb-2"><span class="icon-pill"><i class="bi bi-person-plus"></i></span><h5 class="m-0">Onboarding & KYC Petani</h5></div>
+            <p class="text-muted m-0">Registrasi NIK, foto KTP/selfie, <strong>lokasi kebun (GPS)</strong>, komoditas, luas lahan, histori panen. <strong>Geofencing</strong> diset dari titik/area lahan untuk verifikasi aktivitas dan mencegah kecurangan. Validasi berlapis melalui pendamping.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-3 mb-2"><span class="icon-pill"><i class="bi bi-file-text"></i></span><h5 class="m-0">Manajemen Kontrak</h5></div>
+            <p class="text-muted m-0">Template kontrak dinamis: harga dasar, skema kualitas, tenggat tanam/panen, kewajiban/insentif. Persetujuan digital. <strong>Mode Gotong Royong</strong>: beberapa petani bergabung dalam satu kontrak dengan <em>porsi kontribusi</em> (volume) sehingga pembayaran dibagi proporsional.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-3 mb-2"><span class="icon-pill"><i class="bi bi-graph-up"></i></span><h5 class="m-0">Monitoring Budidaya</h5></div>
+            <p class="text-muted m-0"> <strong>Check-in/out dalam geofence</strong>, laporan bukti. Kunjungan pendamping terekam di audit trail.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-3 mb-2"><span class="icon-pill"><i class="bi bi-exclamation-triangle"></i></span><h5 class="m-0">Deteksi Penyakit Otomatis Berbasis AI</h5></div>
+            <p class="text-muted m-0">Input foto tanaman yang terkena penyakit, aplikasi otomatis mendeteksi penyakit yang dialami.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-3 mb-2"><span class="icon-pill"><i class="bi bi-truck"></i></span><h5 class="m-0">Logistik Manual</h5></div>
+            <p class="text-muted m-0">Penjadwalan jemput manual (WA/telepon), input sopir & kendaraan, rute tulisan tangan/foto peta, form serah terima kertas yang difoto.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-3 mb-2"><span class="icon-pill"><i class="bi bi-cash-coin"></i></span><h5 class="m-0">Pembayaran & Pelaporan</h5></div>
+            <p class="text-muted m-0">Offtaker membayar ke rekening escrow Xendit, dan bukti bayar. <strong>Skema distribusi 97%–2%–1%</strong> (Petani–Admin Poktan–Developer) melalui Xendit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALUR KONTRAK -->
+  <section id="alur" class="py-5 bg-accent">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Alur Kontrak End-to-End</h2>
+      <p class="text-muted">Ringkas namun auditable.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="timeline">
+            
+              <h5>1) Pra-kualifikasi</h5>
+              <p class="text-muted">Input data petani & lahan → verifikasi pendamping → persetujuan admin poktan. <em>Geofence</em> lahan ditetapkan.</p>
+           
+            
+              <h5>2) Penawaran Kontrak</h5>
+              <p class="text-muted">Template harga dasar, target mutu, skema serap. Disetujui petani via digital. Dukungan kontrak <strong>Gotong Royong</strong>.</p>
+          
+           
+              <h5>3) Budidaya & Monitoring</h5>
+              <p class="text-muted">Checklist tahap tanam–panen, <strong>check-in geofence</strong>, kunjungan lapangan, dokumentasi foto.</p>
+           
+              <h5>4) Laporan</h5>
+              <p class="text-muted">Input progres dan hasil berupa foto bersama pendamping dan admin poktan.</p>
+           
+              <h5>5) Logistik Manual</h5>
+              <p class="text-muted">Jadwalkan jemput, catat sopir/kendaraan, unggah foto surat jalan & timbangan via chat aplikasi. Pembayaran ongkos kirim di luar Xendit langsung kepada pengemudi/sopir.</p>
+            
+              <h5>6) Pembayaran</h5>
+              <p class="text-muted">Hitung pembayaran, unggah bukti, kirim notifikasi. <strong>Distribusi 97–2–1</strong> otomatis via Xendit.</p>
+           
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold mb-2">Peran & Hak Akses</h5>
+            <div class="table-responsive">
+              <table class="table table-sm matrix">
+                <thead>
+                  <tr>
+                    <th>Fitur</th>
+                    <th>Petani</th>
+                    <th>Pendamping</th>
+                   <th></th>
+                    <th>Offtaker</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Onboarding/KYC</td><td>Isi</td><td>Verifikasi</td><td></td><td>-</td></tr>
+                  <tr><td>Kontrak</td><td>Ajukan kontrak</td><td>Review</td><td></td><td>Setujui</td></tr>
+                  <tr><td>Monitoring</td><td>Update</td><td>Audit</td><td></td><td>-</td></tr>
+                  <tr><td>Laporan</td><td>Input</td><td>Validasi</td><td></td><td>Lihat</td></tr>
+                  <tr><td>Logistik Manual</td><td>Konfirmasi</td><td>Koordinasi</td><td></td><td>Terima</td></tr>
+                  <tr><td>Pembayaran</td><td>Lihat</td><td>-</td><td></td><td>Konfirmasi</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small text-muted m-0">Semua aksi terekam di <em>audit trail</em> dengan waktu, pengguna, dan lokasi (opsional).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGISTIK MANUAL -->
+  <section id="logistik" class="py-5">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Modul Logistik Manual</h2>
+      <p class="text-muted">Tetap efektif meski tanpa integrasi GPS/armada otomatis.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Langkah Operasional</h5>
+            <ol class="text-muted">
+              <li>Admin/pendamping menetapkan <strong>jadwal jemput</strong> (tanggal/jam) dan lokasi kumpul.</li>
+              <li>Input <strong>data sopir & kendaraan</strong> (nama, kontak, nopol).</li>
+              <li>Sopir share <strong>berbagi lokasi terkini</strong>: via google maps lalu kirimkan link lokasi terkini via chat aplikasi.</li>
+              <li>Siapkan <strong>form kertas</strong>: surat jalan, berita acara timbang, tanda terima.</li>
+              <li>Di lapangan, petani <strong>foto dokumen</strong> + timbangan, lalu unggah ke aplikasi.</li>
+              <li>Aggregator melakukan <strong>rekonsiliasi tonase</strong> & status pengiriman (Selesai/Retur).</li>
+            </ol>
+            <div class="alert alert-success small mb-0"><i class="bi bi-lightbulb"></i> Tip: pakai Google Maps dengan berbagi lokasi (<code>Hingga dinonaktifkan</code>) untuk memudahkan pelacakan.</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Template Dokumen (di Aplikasi)</h5>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead><tr><th>Dokumen</th><th>Bidang Kunci</th><th>Unggah</th></tr></thead>
+                <tbody>
+                  <tr><td>Surat Jalan</td><td>No. surat, sopir, nopol, rute, tanggal</td><td>Foto + PDF</td></tr>
+                  <tr><td>Berita Acara Timbang</td><td>Bruto, Tara, Netto, mutu, lokasi timbang</td><td>Foto</td></tr>
+                  <tr><td>Tanda Terima Offtaker</td><td>Nama penerima, waktu, stempel</td><td>Foto</td></tr>
+                  <tr><td>Catatan Kendala</td><td>Deskripsi, durasi delay, solusi</td><td>Teks</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small text-muted">Semua foto otomatis dijadikan laporan dalam bentuk template PDF.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-1">
+        <div class="col-12">
+          <div class="card card-soft p-3 mb-3">
+            <h5 class="fw-bold">Perhitungan Pembayaran (Contoh)</h5>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr><th>Uraian</th><th>Nilai</th><th>Keterangan</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Netto diterima</td><td>1.500 kg</td><td>Setelah potong susut</td></tr>
+                  <tr><td>Harga dasar</td><td>Rp 9.000/kg</td><td>Kontrak mutu B</td></tr>
+                 
+                  <tr class="table-success"><td><strong>Subtotal dibayar</strong></td><td><strong>Rp 13.500.000</strong></td><td>Otomatis dihitung aplikasi</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small text-muted mb-0">Bukti bayar (transfer/tunai) diunggah untuk melengkapi audit.</p>
+          </div>
+
+          <!-- Distribusi Pembayaran 97-2-1 -->
+          <div class="card card-soft p-3">
+            <h5 class="fw-bold">Distribusi Pembayaran (Escrow 97%–2%–1%)</h5>
+            <p class="text-muted">Contoh pembagian otomatis dari total kontrak yang sudah diverifikasi.</p>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr><th>Penerima</th><th>Persentase</th><th>Nominal (contoh total Rp 6.000.000)</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Petani (dibagi proporsional)</td><td>97%</td><td>Rp 5.820.000</td></tr>
+                  <tr><td>Admin/Pendamping</td><td>2%</td><td>Rp 120.000</td></tr>
+                  <tr><td>Developer</td><td>1%</td><td>Rp 60.000</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small text-muted">Untuk kontrak <em>Gotong Royong</em>, porsi 97% ke petani akan dibagi sesuai kontribusi masing-masing (persentase/volume).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULASI KASUS -->
+  <section id="kasus" class="py-5 bg-accent">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Simulasi Kasus: Telur Konsumsi</h2>
+      <p class="text-muted">Contoh kontrak gotong royong + logistik manual + distribusi pembayaran.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Rincian Kontrak</h5>
+            <ul class="text-muted mb-3">
+              <li><strong>Offtaker:</strong> PT Pangan Sejahtera</li>
+              <li><strong>Kebutuhan:</strong> 3.000 butir</li>
+              <li><strong>Harga per butir:</strong> Rp 2.000 → <em>Total kontrak:</em> Rp 6.000.000</li>
+              <li><strong>Petani (Gotong Royong):</strong> A: 1.200 butir, B: 800 butir, C: 1.000 butir</li>
+              <li><strong>Logistik:</strong> sopir eksternal (dibayar langsung offtaker, di luar escrow)</li>
+            </ul>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead><tr><th>Petani</th><th>Kontribusi</th><th>Persentase</th><th>Nominal (dari 97%)</th></tr></thead>
+                <tbody>
+                  <tr><td>A</td><td>1.200</td><td>40%</td><td>Rp 2.328.000</td></tr>
+                  <tr><td>B</td><td>800</td><td>26,67%</td><td>Rp 1.552.000</td></tr>
+                  <tr><td>C</td><td>1.000</td><td>33,33%</td><td>Rp 1.940.000</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr class="table-success"><td colspan="3"><strong>Total ke Petani (97%)</strong></td><td><strong>Rp 5.820.000</strong></td></tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="small text-muted m-0">Pembulatan persentase ditampilkan untuk ilustrasi; pembagian di aplikasi dilakukan presisi.</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Alur Eksekusi</h5>
+            <ol class="text-muted">
+              <li>Offtaker membuat kontrak dan menyetor <em>escrow</em> Rp 6.000.000.</li>
+              <li>Admin menetapkan geofence lahan petani & jadwal panen.</li>
+              <li>Petani panen; data & foto timbangan diungah.</li>
+              <li>Offtaker menghubungi sopir <em>di luar aplikasi</em> untuk penjemputan.</li>
+              <li>Barang tiba, offtaker bayar sopir <strong>Rp 500.000</strong> (terpisah dari escrow).</li>
+              <li>Sistem menutup kontrak dan otomatis mendistribusikan dana 97–2–1.</li>
+            </ol>
+            <div class="table-responsive mt-2">
+              <table class="table table-sm">
+                <thead><tr><th>Penerima</th><th>Nominal</th></tr></thead>
+                <tbody>
+                  <tr><td>Admin/Pendamping (2%)</td><td>Rp 120.000</td></tr>
+                  <tr><td>Developer (1%)</td><td>Rp 60.000</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr class="table-success"><td><strong>Total Escrow</strong></td><td><strong>Rp 6.000.000</strong></td></tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="small text-muted">Catatan: ongkos kirim dibayar offtaker langsung ke sopir dan tidak mempengaruhi perhitungan escrow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAMPILAN / MOCKUP -->
+  <section id="layar" class="py-5">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Tampilan Aplikasi (Mockup Konseptual)</h2>
+      <p class="text-muted">Contoh layar utama untuk memandu pengembangan Android.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 card-soft">
+            <div class="card-body">
+              <h5 class="card-title">Dashboard</h5>
+              <ul class="small text-muted m-0">
+                <li>Ringkasan kontrak aktif & selesai</li>
+                <li>Progres kontrak</li>
+                <li>Pengenalan aplikasi</li>
+				<li>Prediksi biaya produksi</li>
+				<li>Deteksi penyakit tanaman</li>
+				<li>Rekomendasi kontrak</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 card-soft">
+            <div class="card-body">
+              <h5 class="card-title">Pembayaran Xendit</h5>
+              <ul class="small text-muted m-0">
+                <li>Invoice</li>
+				<li>Metode Pembayaran</li>
+				<li>Pembayaran berhasil</li>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 card-soft">
+            <div class="card-body">
+              <h5 class="card-title">Lahan</h5>
+              <ul class="small text-muted m-0">
+                <li>Lahan yang terdaftar</li>
+                <li>Tambah lahan, lihat peta</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 card-soft">
+            <div class="card-body">
+              <h5 class="card-title">Logistik</h5>
+              <ul class="small text-muted m-0">
+                <li>Data sopir & kendaraan</li>
+                <li>Tambah sopir</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Dashboard admin</h5>
+             <ul class="small text-muted m-0">
+                <li>Data kontak petani</li>
+                <li>Validasi</li>
+				<li>Chat</li>
+				<li>Lihat</li>
+              </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Progres kontrak (Petani)</h5>
+            <ul class="text-muted">
+              <li>Daftar kontrak yang diajukan</li>
+              <li>Unggah bukti atau laporan</li>
+              <li>Lihat kontrak</li>
+              <li>Cetak kontrak</li>
+            </ul>
+            <div class="d-flex gap-2">
+              <span class="badge text-bg-success">Export PDF</span>
+              <span class="badge text-bg-success">Share PDF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-5">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Pertanyaan Umum</h2>
+      <p class="text-muted">Hal-hal yang sering ditanyakan saat implementasi.</p>
+    </div>
+    <div class="container">
+      <div class="accordion" id="faqAcc">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="q1"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1">Apakah aplikasi butuh internet terus-menerus?</button></h2>
+          <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc"><div class="accordion-body">Tidak. Konsep <em>offline-first</em>: data tersimpan lokal & disinkronkan saat ada koneksi.</div></div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="q2"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a2">Bagaimana jika logistik masih manual?</button></h2>
+          <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Tetap tercatat: jadwal jemput, sopir, rute tulisan tangan/foto peta, foto surat jalan & berita timbang. Aplikasi fokus menyimpan bukti & membuat laporan via chat aplikasi.</div></div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="q3"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a3">Apakah bisa diekspor ke Excel?</button></h2>
+          <div id="a3" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Tidak, rencana ekspor PDF untuk laporan KPI dan rekap transaksi.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak" class="py-5 bg-accent">
+    <div class="container section-title text-center mb-4">
+      <h2 class="mb-2">Kontak</h2>
+      <p class="text-muted">Tertarik mengembangkan konsep ini menjadi aplikasi Android nyata?</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100">
+            <h5 class="fw-bold">Kontak Penyusun</h5>
+            <ul class="list-unstyled m-0">
+              <li class="mb-1"><i class="bi bi-person me-2"></i>Salwa Dian Lestari, S.T.</li>
+              <li class="mb-1"><i class="bi bi-envelope me-2"></i><a href="mailto:salwadianlestari2@gmail.com">salwadianlestari2@gmail.com</a></li>
+              <li class="mb-1"><i class="bi bi-telephone me-2"></i>+62 8895 126 476</li>
+              <li class="mb-1"><i class="bi bi-geo-alt me-2"></i>Purwonegoro, Banjarnegara, Jawa Tengah</li>
+              <li class="mb-1"><i class="bi bi-linkedin me-2"></i><a href="https://www.linkedin.com/in/salwadianlestari" target="_blank">LinkedIn</a></li>
+              <li class="mb-1"><i class="bi bi-github me-2"></i><a href="https://salwadiann.github.io/" target="_blank">Portfolio</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft p-3 h-100 text-center">
+            <h5 class="fw-bold">Siap Kolaborasi</h5>
+            <p class="text-muted">Tim Anda bisa memakai konsep ini sebagai <em>blueprint</em> pengembangan. Saya siap membantu sebagai Project Assistant/BA/QA.</p>
+            <a class="btn btn-brand btn-lg" href="https://wa.me/628895126476"><i class="bi bi-send"></i> Mulai Diskusi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4" style="background:var(--brand-dark); color:#fff">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div>© <span id="y"></span> ContractFarmingApp Concept • Dibuat oleh Salwa Dian Lestari</div>
+      <div class="d-flex gap-3">
+        <a class="link-light" href="#home">Beranda</a>
+        <a class="link-light" href="#fitur">Fitur</a>
+        <a class="link-light" href="#logistik">Logistik</a>
+        <a class="link-light" href="#kasus">Simulasi</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
